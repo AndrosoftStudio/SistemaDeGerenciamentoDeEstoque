@@ -1,0 +1,14 @@
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\bin\Debug\net8.0\Aqui.exe
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\bin\Debug\net8.0\Aqui.deps.json
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\bin\Debug\net8.0\Aqui.runtimeconfig.json
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\bin\Debug\net8.0\Aqui.dll
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\bin\Debug\net8.0\Aqui.pdb
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.AssemblyInfoInputs.cache
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.AssemblyInfo.cs
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.csproj.CoreCompileInputs.cache
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.dll
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\refint\Aqui.dll
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.pdb
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\Aqui.genruntimeconfig.cache
+C:\Users\andre\OneDrive\Documentos\SENAI\Modelagem De Sistemas\Atividade para o dia 08-09-2025\PrototipoDoSistema\Aqui\obj\Debug\net8.0\ref\Aqui.dll
