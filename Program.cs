@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Security.Cryptography;
 
 namespace Aqui;
 
@@ -21,6 +22,9 @@ class Program
     //Operações do Sistema
     public static DateTime dateAtual = DateTime.Now;
 
+    //Geração de números Aleatórios
+    public Aleatorios random = new Aleatorios();
+
     //Operações do Programa
     public static OperationsSystem os = new OperationsSystem();
 
@@ -28,6 +32,7 @@ class Program
     public static int opcao;
     public static string inputUser;
     public static int opcaoHelp;
+    public static int opcaoTipo;
 
     public static void Main(string[] args)
     {
@@ -46,6 +51,7 @@ class Program
         Console.WriteLine("-----------------------------------------------------");
         Console.WriteLine("[1] Cadastrar novo Produto");
         Console.WriteLine("[2] Cadastrar novo Tipo");
+        Console.WriteLine("[3] Imprimir Produtos");
         Console.WriteLine("[?] Caso Tenha Duvidas...");
         Console.WriteLine("[0] Fechar o Programa...");
         Console.WriteLine("-----------------------------------------------------");
@@ -79,11 +85,12 @@ class Program
     {
         try
         {
+            
             Console.WriteLine("=====================================================");
             Console.WriteLine("                   CRIAÇÃO DE TIPOS                  ");
             Console.WriteLine("=====================================================");
             Console.WriteLine("=====================================================");
-            for (int i = ondeparouTipo; i < ondeparouTipo; i++)
+            for (int i = ondeparouTipo; i < ondeparouTipo + 1; i++)
             {
                 tp[i] = new Tipo();
                 do
@@ -99,7 +106,7 @@ class Program
                 {
                     Console.WriteLine("-----------------------------------------------------");
                     Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
-                    Console.WriteLine("Digite o nome do tipo: ");
+                    Console.WriteLine("Digite a descrição do tipo[" + tp[i].descricao + "]: ");
                     tp[i].descricao = Console.ReadLine();
                     Console.WriteLine("-----------------------------------------------------");
                 } while (string.IsNullOrWhiteSpace(tp[i].descricao));
@@ -115,6 +122,10 @@ class Program
                     }
                     else
                     {
+
+                        string aleatorionumero = "";
+                        aleatorionumero = Aleatorios.numero(999).ToString();
+                        tp[i].id = "" + ondeparouTipo + "-" + tp[i].nome + aleatorionumero + "";
                         crioutipo = true;
                         ondeparouTipo = ondeparouTipo + 1;
                         Console.Clear();
@@ -140,9 +151,10 @@ class Program
             Console.Clear();
             Menu();
         }
-
+        
         Console.Clear();
         Menu();
+        
     }
 
     public static void criarProduto()
@@ -181,6 +193,27 @@ class Program
                     } while (string.IsNullOrWhiteSpace(pd[i].descricao));
                     Console.WriteLine("=====================================================");
 
+                    do
+                    {
+                        Console.WriteLine("-----------------------------------------------------");
+                        Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
+                        Console.WriteLine("SELECIONE UM TIPO");
+                        for (int j = 0; j < ondeparouTipo; j++)
+                        {
+                            Console.WriteLine("-----------------------------------------------------");
+                            Console.WriteLine("[" + j+1 +"] '" + tp[j].nome + "'");
+                            Console.WriteLine("Descrição: '" + tp[j].descricao + "'");
+                            Console.WriteLine("ID: '" + tp[j].id + "'");
+                            Console.WriteLine("-----------------------------------------------------");
+                        }
+                        Console.WriteLine("-----------------------------------------------------");
+                        Console.WriteLine(">>Digite a opção desejada: ");
+                        opcaoTipo = int.Parse(Console.ReadLine());
+                        pd[i].tipo = opcaoTipo;
+                        Console.WriteLine("-----------------------------------------------------");
+                    } while (string.IsNullOrWhiteSpace(pd[i].descricao));
+                    Console.WriteLine("=====================================================");
+
                     try
                     {
                         if (string.IsNullOrWhiteSpace(pd[i].descricao) && string.IsNullOrWhiteSpace(pd[i].nome))
@@ -192,6 +225,9 @@ class Program
                         }
                         else
                         {
+                            string aleatorionumero = "";
+                            aleatorionumero = Aleatorios.numero(999).ToString();
+                            pd[i].id = "" + ondeparou + "-" + pd[i].nome + aleatorionumero + "";
                             criouproduto = true;
                             ondeparou = ondeparou + 1;
                             Console.Clear();
@@ -222,6 +258,51 @@ class Program
         else
         {
             Console.WriteLine("Você precisa criar um tipo antes de criar produtos!");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Menu();
+        }
+    }
+
+    public static void ImprimirProdutos()
+    {
+        try
+        {
+            if (criouproduto == true)
+            {
+                Console.WriteLine("=====================================================");
+                Console.WriteLine("                  IMPRIMIR PRODUTOS                  ");
+                Console.WriteLine("=====================================================");
+                Console.WriteLine("=====================================================");
+                for (int i = 0; i < ondeparou; i++)
+                {
+                    int indice = 1 + 1;
+                    Console.WriteLine("-----------------------------------------------------");
+                    Console.WriteLine("INDICE [" + indice + "]");
+                    Console.WriteLine("Nome do Produto: " + pd[i].nome);
+                    Console.WriteLine("Descrição do " + pd[i].nome + " :" + pd[i].nome);
+                    Console.WriteLine("tipo do " + pd[i].nome + " :" + pd[i].tipo);
+                    Console.WriteLine("ID do " + pd[i].nome + " :" + pd[i].id);
+                    Console.WriteLine("-----------------------------------------------------");
+                }
+                Console.WriteLine("=====================================================");
+                Console.WriteLine(">>Digite qualquer tecla para continuar...");
+                Console.ReadLine();
+                Console.Clear();
+                Menu();
+            }
+            else
+            {
+                Console.WriteLine("<< Você ainda não criou produtos, crie produtos antes de tentar imprimilos! >>");
+                Console.WriteLine(">>Digite qualquer tecla para continuar...");
+                Console.ReadLine();
+                Console.Clear();
+                Menu();
+            }
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Ocorreu um erro ao tentar imprimir produtos: (" + e + ")");
             Thread.Sleep(5000);
             Console.Clear();
             Menu();
@@ -308,6 +389,10 @@ class OperationsSystem
                 Console.Clear();
                 Program.criarTipo();
                 break;
+            case 3:
+                Console.Clear();
+                Program.ImprimirProdutos();
+                break;
             default:
                 Console.WriteLine("<< VOCÊ NÃO PODE USAR ESSA OPÇÃO [" + opcaoo + "] >>");
                 Thread.Sleep(5000);
@@ -334,6 +419,21 @@ class OperationsSystem
         }
     }
 }
+class Aleatorios
+{
+    public static int numero(int Numero_Maximo)
+    {
+        int resultado = RandomNumberGenerator.GetInt32(Numero_Maximo);
+
+        return resultado;
+    }
+
+    public static int numeroIntervalo(int Numero_Minimo, int Numero_Maximo)
+    {
+        int resultado = RandomNumberGenerator.GetInt32(Numero_Minimo, Numero_Maximo);
+        return resultado;
+    }
+}
 
 class Palettis
 {
@@ -344,14 +444,14 @@ class Palettis
 
 class Tipo
 {
-    public int id;
+    public string id;
     public string nome;
     public string descricao;
 }
 
 class Produto
 {
-    public int id = 0;
+    public string id = "";
     public string descricao = "";
     public string nome = "";
     public int tipo = 0;
