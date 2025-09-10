@@ -23,7 +23,7 @@ class Program
     public static DateTime dateAtual = DateTime.Now;
 
     //Geração de números Aleatórios
-    public Aleatorios random = new Aleatorios();
+    public static Aleatorios random = new Aleatorios();
 
     //Operações do Programa
     public static OperationsSystem os = new OperationsSystem();
@@ -32,7 +32,7 @@ class Program
     public static int opcao;
     public static string inputUser;
     public static int opcaoHelp;
-    public static int opcaoTipo;
+    public static int opcaoTipo = 0;
 
     public static void Main(string[] args)
     {
@@ -92,11 +92,14 @@ class Program
             Console.WriteLine("=====================================================");
             for (int i = ondeparouTipo; i < ondeparouTipo + 1; i++)
             {
+                int indice = ondeparouTipo + 1;
                 tp[i] = new Tipo();
+                pd[i] = new Produto();
+
                 do
                 {
                     Console.WriteLine("-----------------------------------------------------");
-                    Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
+                    Console.WriteLine("INDICE ATUAL [" + indice + "]");
                     Console.WriteLine("Digite o nome do tipo: ");
                     tp[i].nome = Console.ReadLine();
                     Console.WriteLine("-----------------------------------------------------");
@@ -105,8 +108,8 @@ class Program
                 do
                 {
                     Console.WriteLine("-----------------------------------------------------");
-                    Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
-                    Console.WriteLine("Digite a descrição do tipo[" + tp[i].descricao + "]: ");
+                    Console.WriteLine("INDICE ATUAL [" + indice + "]");
+                    Console.WriteLine("Digite a descrição do tipo[" + tp[i].nome + "]: ");
                     tp[i].descricao = Console.ReadLine();
                     Console.WriteLine("-----------------------------------------------------");
                 } while (string.IsNullOrWhiteSpace(tp[i].descricao));
@@ -122,10 +125,10 @@ class Program
                     }
                     else
                     {
-
                         string aleatorionumero = "";
                         aleatorionumero = Aleatorios.numero(999).ToString();
                         tp[i].id = "" + ondeparouTipo + "-" + tp[i].nome + aleatorionumero + "";
+                        tp[i].tipo = "Nome: [" + tp[i].nome + "] | Descrição: [" + tp[i].descricao + "] | ID: [" + tp[i].id + "]";
                         crioutipo = true;
                         ondeparouTipo = ondeparouTipo + 1;
                         Console.Clear();
@@ -167,17 +170,17 @@ class Program
             {
                 for (int i = ondeparou; i < ondeparou + 1; i++)
                 {
+                    int indice = ondeparou + 1;
                     Console.Clear();
 
                     pd[i] = new Produto();
-                    tp[i] = new Tipo();
 
                     Console.WriteLine("=====================================================");
                     Console.WriteLine("                 CRIAÇÃO DE PRODUTOS                 ");
                     do
                     {
                         Console.WriteLine("-----------------------------------------------------");
-                        Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
+                        Console.WriteLine("INDICE ATUAL [" + indice + "]");
                         Console.WriteLine("Digite o nome do produto: ");
                         pd[i].nome = Console.ReadLine();
                         Console.WriteLine("-----------------------------------------------------");
@@ -186,7 +189,7 @@ class Program
                     do
                     {
                         Console.WriteLine("-----------------------------------------------------");
-                        Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
+                        Console.WriteLine("INDICE ATUAL [" + indice + "]");
                         Console.WriteLine("Digite a descrição do produto: ");
                         pd[i].descricao = Console.ReadLine();
                         Console.WriteLine("-----------------------------------------------------");
@@ -196,12 +199,12 @@ class Program
                     do
                     {
                         Console.WriteLine("-----------------------------------------------------");
-                        Console.WriteLine("INDICE ATUAL [" + ondeparou + "]");
+                        Console.WriteLine("INDICE ATUAL [" + indice + "]");
                         Console.WriteLine("SELECIONE UM TIPO");
                         for (int j = 0; j < ondeparouTipo; j++)
                         {
                             Console.WriteLine("-----------------------------------------------------");
-                            Console.WriteLine("[" + j+1 +"] '" + tp[j].nome + "'");
+                            Console.WriteLine("[" + j +"] '" + tp[j].nome + "'");
                             Console.WriteLine("Descrição: '" + tp[j].descricao + "'");
                             Console.WriteLine("ID: '" + tp[j].id + "'");
                             Console.WriteLine("-----------------------------------------------------");
@@ -209,7 +212,7 @@ class Program
                         Console.WriteLine("-----------------------------------------------------");
                         Console.WriteLine(">>Digite a opção desejada: ");
                         opcaoTipo = int.Parse(Console.ReadLine());
-                        pd[i].tipo = opcaoTipo;
+                        pd[i].tipo = tp[opcaoTipo].tipo;
                         Console.WriteLine("-----------------------------------------------------");
                     } while (string.IsNullOrWhiteSpace(pd[i].descricao));
                     Console.WriteLine("=====================================================");
@@ -276,13 +279,13 @@ class Program
                 Console.WriteLine("=====================================================");
                 for (int i = 0; i < ondeparou; i++)
                 {
-                    int indice = 1 + 1;
+                    int indice = i + 1;
                     Console.WriteLine("-----------------------------------------------------");
                     Console.WriteLine("INDICE [" + indice + "]");
-                    Console.WriteLine("Nome do Produto: " + pd[i].nome);
-                    Console.WriteLine("Descrição do " + pd[i].nome + " :" + pd[i].nome);
-                    Console.WriteLine("tipo do " + pd[i].nome + " :" + pd[i].tipo);
-                    Console.WriteLine("ID do " + pd[i].nome + " :" + pd[i].id);
+                    Console.WriteLine("Nome do Produto: [" + pd[i].nome + "]");
+                    Console.WriteLine("Descrição do Produto [" + pd[i].nome + "]:" + pd[i].nome);
+                    Console.WriteLine("Tipo do Produto [" + pd[i].nome + "]:" + pd[i].tipo);
+                    Console.WriteLine("ID do Produto [" + pd[i].nome + "]:" + pd[i].id);
                     Console.WriteLine("-----------------------------------------------------");
                 }
                 Console.WriteLine("=====================================================");
@@ -444,6 +447,7 @@ class Palettis
 
 class Tipo
 {
+    public string tipo;
     public string id;
     public string nome;
     public string descricao;
@@ -454,5 +458,5 @@ class Produto
     public string id = "";
     public string descricao = "";
     public string nome = "";
-    public int tipo = 0;
+    public string tipo = "";
 }
